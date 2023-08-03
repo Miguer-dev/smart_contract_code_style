@@ -66,7 +66,8 @@ function _internalFunction() internal {
 
 
 ## Events
-Only trigger events on actual state changes.
+* Use CamelCase for events names.
+* Only trigger events on actual state changes.
 
 
 ## Errors
