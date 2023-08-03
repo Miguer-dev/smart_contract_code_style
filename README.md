@@ -70,17 +70,18 @@ Only trigger events on actual state changes.
 
 
 ## Errors
-Prefer custom error types over emitting strings. (gas efficiency)
+* Use CamelCase for errors names and it must follow the following format ContractName__ErrorName
+* Prefer custom error types over emitting strings. (gas efficiency)
 ```Solidity
-error NotOwner();
+error Lottery__NotOwner();
 
 modifier onlyOwner{
-    if(msg.sender != i_owner) revert NotOwner();
+    if(msg.sender != i_owner) revert Lottery__NotOwner();
     _;
 }
 
 modifier onlyOwner{
-    require(msg.sender == i_owner, "Only the owner can do this.y");   
+    require(msg.sender == i_owner, "Only the owner can do this.");   
     _;
 }
 ```
