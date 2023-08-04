@@ -11,9 +11,9 @@ Writing well-structured Solidity code is essential for creating maintainable, se
 
 ## Contract Layout
 * License and Version
-* Imports
-* Errors
+* Imports* 
 * Interfaces, Libraries, Contracts
+* Errors
 * Type Declarations
 * State Variables
 * Events
