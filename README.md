@@ -28,8 +28,21 @@ Writing well-structured Solidity code is essential for creating maintainable, se
 * Public Functions
 * Internal Functions
 * Private Functions
-* View & Pure Functions
+* Getter Functions
 
+## Contract
+* Use CamelCase for contract name.
+* Comment contract details.
+```Solidity
+/**
+ * @title A Funding Contract
+ * @author Miguel Martinez
+ * @notice This contract is for creating a fund
+ * @dev Implements Chainlink VRFv2
+ */
+contract FundMe {}
+```
+  
 ## Variables
 * Use camelCase for variable names.
 * Prefix storage variables with s_.
@@ -59,6 +72,35 @@ function _internalFunction() internal {
 ```
 * Clearly declare method visibility.
 * Prefer external over public for functions meant for external use. (gas efficiency)
+* Use the "CEI" Design Pattern (Checks, Effects, Interactions) to build functions.
+```Solidity
+function enterRaffle() external{
+    /*Checks
+    *requires , if->revert->errors
+    *It is mor gas efficient to revert the functions in the first lines.
+    */
+
+    /*Effects
+    *All the logic that effects our contract.
+    */
+
+    /*Interactions
+    *external calls
+    *Interact with others contracts.
+    */
+}
+```
+
+
+## Enum
+* Use CamelCase for the enum name.
+* Enum values should be in all capital letters
+```Solidity
+enum State {
+    OPEN,
+    CLOSE
+}
+```
 
 ## Modifiers
 * Use modifiers to minimize code duplication.
@@ -68,7 +110,9 @@ function _internalFunction() internal {
 ## Events
 * Use CamelCase for events names.
 * Only trigger events on actual state changes.
-
+```Solidity
+event PickedWinner(address indexed user);
+```
 
 ## Errors
 * Use CamelCase for errors names and it must follow the following format ContractName__ErrorName
