@@ -149,16 +149,29 @@ External calls can fail accidentally or deliberately. To minimize the damage cau
 
 Ensure that all state changes occur before making external calls, i.e., update balances or internal code before calling external code.
 
+### ReentrancyGuard
+In case a function could be susceptible to a reentrancy attack by making a call to an external contract, use function modifiers that prevent reentrancy. (https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/security/ReentrancyGuard.sol)
+
 ```Solidity
-error transferFail();
-error ceroBalance();
+import {ReentrancyGuard} from "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-function withdraw(uint256 amount) external {
-    uint256 balance = balances[msg.sender];
-    if(balance <= 0) revert ceroBalance();
-    balances[msg.sender] = 0;
+contract TestContract is ReentrancyGuard {
 
-    (bool success, ) = msg.sender.call{value: bal}("");
-    if(!success) revert transferFail();
+  ...
+
+  error transferFail();
+  error ceroBalance();
+  
+  function withdraw(uint256 amount) external nonReentrant{
+      uint256 balance = balances[msg.sender];
+      if(balance <= 0) revert ceroBalance();
+      balances[msg.sender] = 0;
+  
+      (bool success, ) = msg.sender.call{value: bal}("");
+      if(!success) revert transferFail();
+  }
+
+  ...
+
 }
 ```
