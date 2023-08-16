@@ -35,7 +35,7 @@ Writing well-structured Solidity code is essential for creating maintainable, se
 * Comment contract details.
 ```Solidity
 /**
- * @title A Funding Contract
+ * @title FundMe
  * @author Miguel Martinez
  * @notice This contract is for creating a fund
  * @dev Implements Chainlink VRFv2
