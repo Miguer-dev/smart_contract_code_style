@@ -6,7 +6,8 @@ import {Script} from "forge-std/Script.sol";
 import {MainContract} from "../src/MainContract.sol";
 
 contract DeployContract is Script {
-    function run() external returns (BasicNft) {
+
+    function run() external returns (MainContract) {
         vm.startBroadcast();
         MainContract mainContract = new MainContract();
         vm.stopBroadcast();
